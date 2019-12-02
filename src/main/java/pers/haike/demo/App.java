@@ -6,6 +6,7 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import pers.haike.demo.utils.FileTools;
 
 import java.io.File;
@@ -13,6 +14,9 @@ import java.io.File;
 //https://www.cnblogs.com/52mm/p/p15.html
 public class App {
 
+    static class MyTextOutputFormat extends TextOutputFormat<Text, FlowBean> {
+
+    }
     public static void main(String[] args) throws Exception {
         Configuration conf = new Configuration();
 //      将默认配置文件传给job
@@ -31,9 +35,10 @@ public class App {
 //      job的输入数据所在的目录
 //      第一个参数：给哪个job设置
 //      第二个参数：输入数据的目录，多个目录用逗号分隔
-        FileInputFormat.setInputPaths(job, new Path("./input/"));
+        FileInputFormat.setInputPaths(job, new Path("./input/txt/"));
 //      job的数据输出在哪个目录
         FileTools.delFile(new File("./output/"));
+        job.setOutputFormatClass(MyTextOutputFormat.class);
         FileOutputFormat.setOutputPath(job, new Path("./output/"));
         //将jar包和配置文件提交给yarn
 //      submit方法提交作业就退出该程序

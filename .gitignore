@@ -1,4 +1,6 @@
 .idea
 target
 *.iml
-input/*.lzo
+input/lzo/*
+*DS_Store
+output

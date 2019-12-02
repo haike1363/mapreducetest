@@ -17,7 +17,7 @@ public class FlowCount {
         protected void map(LongWritable key, Text value, Mapper<LongWritable, Text, Text, FlowBean>.Context context)
                 throws IOException, InterruptedException {
 //          每一行读进来的数据转化为String类型
-            String line = value.toString();
+            String line = new String(value.getBytes());
             //根据tab分割
             String[] fields = line.split(" ");
             //取出手机号

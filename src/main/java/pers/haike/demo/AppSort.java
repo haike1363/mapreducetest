@@ -34,7 +34,7 @@ public class AppSort {
 //      job的输入数据所在的目录
 //      第一个参数：给哪个job设置
 //      第二个参数：输入数据的目录，多个目录用逗号分隔
-        FileInputFormat.setInputPaths(job, new Path("./input/"));
+        FileInputFormat.setInputPaths(job, new Path("./input/txt/"));
 //      job的数据输出在哪个目录
         FileTools.delFile(new File("./output/"));
         FileOutputFormat.setOutputPath(job, new Path("./output/"));
